@@ -15,6 +15,12 @@ Provides structured documentation and ready-to-use `osascript` commands that let
 ## Installation
 
 ```bash
+npx skills add vinitu/macos-photos-skill
+```
+
+Or with [skills.sh](https://skills.sh):
+
+```bash
 skills.sh add vinitu/macos-photos-skill
 ```
 
@@ -37,17 +43,16 @@ The main reference is `SKILL.md`. It contains all supported operations with copy
 
 ### Quick example
 
-```bash
-# List all albums
-osascript -e 'tell application "Photos" to get name of every album'
+From the skill directory (or path where scripts are installed):
 
-# Export favorites to Desktop
-osascript -e 'tell application "Photos"
-  set faves to every media item whose favorite is true
-  set dest to POSIX file "/Users/Dmytro/Desktop/favorites" as alias
-  export faves to dest
-end tell'
+```bash
+# List all album names
+osascript scripts/album/list.applescript
+# Export album "Favorites" to a folder
+osascript scripts/media/export.applescript "Favorites" "/path/to/dest"
 ```
+
+For more operations (search, create album, favorite, import), see `SKILL.md` and scripts under `scripts/`.
 
 ## Limitations
 
