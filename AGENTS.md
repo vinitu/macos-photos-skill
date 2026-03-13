@@ -6,13 +6,27 @@ Document the Photos.app AppleScript surface accurately and completely for use by
 
 ## Repo Layout
 
-```
-macos-photos-skill/
-  SKILL.md    — main skill file with all commands, examples, metadata tables, and troubleshooting
-  README.md   — repo overview, installation, scope, and quick usage
-  LICENSE     — MIT license
-  AGENTS.md   — this file: guidelines for editing the repo
-```
+- `AGENTS.md`: this file; rules for editing the repo.
+- `SKILL.md`: main skill file with all commands, examples, metadata tables, and troubleshooting.
+- `README.md`: repo overview, installation, scope, and quick usage.
+- `Makefile`: targets `dictionary-photos`, `check`, `compile`, `test` (test-dictionary + test-smoke).
+- `scripts/album/list.applescript`, `create.applescript`, `delete.applescript`.
+- `scripts/folder/list.applescript`.
+- `scripts/media/list.applescript`, `search.applescript`, `get.applescript`, `export.applescript`, `import.applescript`, `favorite.applescript`, `duplicate.applescript`.
+- `scripts/slideshow/start.applescript`, `stop.applescript`.
+- `scripts/application/favorites-album.applescript`, `recently-deleted.applescript`.
+- `scripts/spotlight.applescript`.
+- `tests/dictionary_contract.sh`: contract test against Photos.app scripting dictionary.
+- `tests/smoke_photos.sh`: smoke test for script layer (skips when Photos.app not available).
+- `.github/workflows/ci-pr.yml`, `ci-main.yml`: CI on PR and push to main.
+
+## Validation
+
+After making changes:
+- run `make check` to ensure Photos.app is available;
+- run `make test` to run dictionary contract and smoke tests;
+- run `make compile` to compile all AppleScript files (syntax check);
+- update `SKILL.md` when coverage changes.
 
 ## Editing Rules
 
