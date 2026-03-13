@@ -1,9 +1,9 @@
 ---
-name: apple-photos
+name: macos-photos
 description: Photos.app integration on macOS for AI agents via AppleScript/JXA
 ---
 
-# Apple Photos Skill
+# macOS Photos Skill
 
 Control and query Apple Photos.app on macOS using AppleScript (osascript) commands.
 

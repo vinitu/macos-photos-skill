@@ -7,7 +7,7 @@ Document the Photos.app AppleScript surface accurately and completely for use by
 ## Repo Layout
 
 ```
-apple-photos-skill/
+macos-photos-skill/
   SKILL.md    — main skill file with all commands, examples, metadata tables, and troubleshooting
   README.md   — repo overview, installation, scope, and quick usage
   LICENSE     — MIT license

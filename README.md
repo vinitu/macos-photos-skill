@@ -1,4 +1,4 @@
-# apple-photos-skill
+# macos-photos-skill
 
 An AI agent skill for interacting with Apple Photos.app on macOS via AppleScript.
 
@@ -15,7 +15,7 @@ Provides structured documentation and ready-to-use `osascript` commands that let
 ## Installation
 
 ```bash
-skills.sh add vinitu/apple-photos-skill
+skills.sh add vinitu/macos-photos-skill
 ```
 
 ## Scope
