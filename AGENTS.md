@@ -18,7 +18,8 @@ Document the Photos.app AppleScript surface accurately and completely for use by
 - `scripts/spotlight.applescript`.
 - `tests/dictionary_contract.sh`: contract test against Photos.app scripting dictionary.
 - `tests/smoke_photos.sh`: smoke test for script layer (skips when Photos.app not available).
-- `.github/workflows/ci-pr.yml`, `ci-main.yml`: CI on PR and push to main.
+- `.github/workflows/ci-pr.yml`: PR validation, auto-merge, version bump, tag, and release flow.
+- `.github/workflows/ci-main.yml`: main-branch validation, patch tag, and release flow.
 
 ## Validation
 
