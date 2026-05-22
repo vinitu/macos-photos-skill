@@ -38,7 +38,11 @@ Output rules:
 ## Backend Map
 
 - `scripts/commands/album/*` → AppleScript in `scripts/applescripts/album/*`
+- `scripts/commands/application/*` → AppleScript in `scripts/applescripts/application/*`
+- `scripts/commands/folder/*` → AppleScript in `scripts/applescripts/folder/*`
+- `scripts/commands/media/*` → AppleScript in `scripts/applescripts/media/*`
 - `scripts/commands/photo/*` → AppleScript in `scripts/applescripts/photo/*`
+- `scripts/commands/slideshow/*` → AppleScript in `scripts/applescripts/slideshow/*`
 
 `scripts/applescripts` is internal. Do not call it directly from the skill instructions.
 
@@ -50,9 +54,33 @@ Album:
 - `scripts/commands/album/delete.sh`
 - `scripts/commands/album/list.sh`
 
+Application:
+
+- `scripts/commands/application/favorites-album.sh`
+- `scripts/commands/application/recently-deleted.sh`
+
+Folder:
+
+- `scripts/commands/folder/list.sh`
+
+Media:
+
+- `scripts/commands/media/duplicate.sh`
+- `scripts/commands/media/export.sh`
+- `scripts/commands/media/favorite.sh`
+- `scripts/commands/media/get.sh`
+- `scripts/commands/media/import.sh`
+- `scripts/commands/media/list.sh`
+- `scripts/commands/media/search.sh`
+
 Photo:
 
 - `scripts/commands/photo/spotlight.sh`
+
+Slideshow:
+
+- `scripts/commands/slideshow/start.sh`
+- `scripts/commands/slideshow/stop.sh`
 
 ## Validation
 

@@ -22,7 +22,11 @@ Do not call `scripts/applescripts` directly.
 Run commands from `scripts/commands`:
 
 - `scripts/commands/album/*`
+- `scripts/commands/application/*`
+- `scripts/commands/folder/*`
+- `scripts/commands/media/*`
 - `scripts/commands/photo/*`
+- `scripts/commands/slideshow/*`
 
 ## Output Rules
 
@@ -31,7 +35,7 @@ Run commands from `scripts/commands`:
 
 ## Commands
 
-Album:
+### Album
 
 ```bash
 scripts/commands/album/create.sh
@@ -39,11 +43,66 @@ scripts/commands/album/delete.sh
 scripts/commands/album/list.sh
 ```
 
-Photo:
+### Application
+
+```bash
+scripts/commands/application/favorites-album.sh
+scripts/commands/application/recently-deleted.sh
+```
+
+### Folder
+
+```bash
+scripts/commands/folder/list.sh
+```
+
+### Media
+
+```bash
+scripts/commands/media/duplicate.sh
+scripts/commands/media/export.sh
+scripts/commands/media/favorite.sh
+scripts/commands/media/get.sh
+scripts/commands/media/import.sh
+scripts/commands/media/list.sh
+scripts/commands/media/search.sh
+```
+
+### Photo
 
 ```bash
 scripts/commands/photo/spotlight.sh
 ```
+
+### Slideshow
+
+```bash
+scripts/commands/slideshow/start.sh
+scripts/commands/slideshow/stop.sh
+```
+
+## JSON Contract
+
+Media object:
+
+- `id` (string)
+- `name` (string)
+- `filename` (string)
+- `date` (string, ISO 8601)
+- `description` (string or null)
+- `keywords` (list of strings)
+- `favorite` (boolean)
+- `width` (integer)
+- `height` (integer)
+
+Album object:
+
+- `name` (string)
+- `count` (integer)
+
+Scalar envelopes:
+
+- `success/failure`: `{"success": true/false, "error": "..."}`
 
 ## Safety Boundaries
 
