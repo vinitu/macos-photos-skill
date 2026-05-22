@@ -1,16 +1,9 @@
-# macos-photos-skill
+# macOS Photos Skill
 
-An AI agent skill for interacting with Apple Photos.app on macOS via AppleScript.
+This repo stores an AI agent skill for Apple Photos.app on macOS.
 
-## What This Does
-
-Provides structured documentation and ready-to-use `osascript` commands that let AI agents (Claude, etc.) work with the Photos.app library on macOS. Covers reading albums, searching photos, getting metadata, exporting, importing, and managing favorites.
-
-## Prerequisites
-
-- macOS with Photos.app installed (ships with macOS by default)
-- Terminal access with Automation permissions for Photos (System Settings > Privacy & Security > Automation)
-- `osascript` available in PATH (included with macOS)
+The public interface is `scripts/commands`.
+`scripts/applescripts` stores internal AppleScript backends and dictionary-aligned coverage.
 
 ## Installation
 
@@ -24,40 +17,54 @@ Or with [skills.sh](https://skills.sh):
 skills.sh add vinitu/macos-photos-skill
 ```
 
-## Scope
+## Prerequisites
 
-This skill covers:
+- macOS with Photos.app
+- Automation permission granted to your terminal app
 
-- Listing and browsing albums, folders, and media items
-- Searching photos by filename, date, keyword, and favorite status
-- Reading photo metadata (name, date, description, keywords, location, dimensions)
-- Creating and deleting albums
-- Adding photos to albums
-- Exporting photos to a folder (copies or originals)
-- Importing photos into the library or a specific album
-- Favoriting and unfavoriting photos
+## Public Interface
 
-## Usage
-
-The main reference is `SKILL.md`. It contains all supported operations with copy-paste `osascript` commands. AI agents load this file as context when they need to interact with Photos.app.
-
-### Quick example
-
-From the skill directory (or path where scripts are installed):
+Run skill actions with:
 
 ```bash
-# List all album names
-osascript scripts/album/list.applescript
-# Export album "Favorites" to a folder
-osascript scripts/media/export.applescript "Favorites" "/path/to/dest"
+scripts/commands/<entity>/<action>.sh [args...]
 ```
 
-For more operations (search, create album, favorite, import), see `SKILL.md` and scripts under `scripts/`.
+Output rules:
 
-## Limitations
+- Commands return JSON by default unless noted otherwise.
+- `--json`, `--plain`, and `--format=plain|json` are not supported.
 
-Photos.app AppleScript support is read-heavy. Many write operations (editing photos, setting metadata fields beyond favorites, removing items from albums) are not available. See the Limitations section in `SKILL.md` for the full list.
+## Backend Map
 
-## License
+- `scripts/commands/album/*` → AppleScript in `scripts/applescripts/album/*`
+- `scripts/commands/photo/*` → AppleScript in `scripts/applescripts/photo/*`
 
-MIT - see [LICENSE](LICENSE).
+`scripts/applescripts` is internal. Do not call it directly from the skill instructions.
+
+## Command Surface
+
+Album:
+
+- `scripts/commands/album/create.sh`
+- `scripts/commands/album/delete.sh`
+- `scripts/commands/album/list.sh`
+
+Photo:
+
+- `scripts/commands/photo/spotlight.sh`
+
+## Validation
+
+```bash
+make compile
+make test
+```
+
+`make test` runs live checks against Photos.app and expects Photos to be available.
+
+## Known Limits
+
+- Photos must be running for most commands to work.
+- TCC permissions (Automation) must be granted to the terminal or parent process.
+- Photos AppleScript support is read-heavy; many write operations are not available.
