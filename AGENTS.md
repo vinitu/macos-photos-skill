@@ -1,5 +1,11 @@
 # AGENTS.md
 
+## Public interface and internal backend
+
+- `scripts/commands/` is the only public command surface. Run commands from the repo root with paths like `scripts/commands/<entity>/<action>.sh`.
+- `scripts/applescripts/` is the internal backend. Do not call AppleScript files directly from skill instructions.
+- Only commands listed in `SKILL.md` are public. Other scripts may exist for internal use or legacy cleanup.
+
 ## Goal
 
 Document the Photos.app AppleScript surface accurately and completely for use by AI agents on macOS.
@@ -10,11 +16,11 @@ Document the Photos.app AppleScript surface accurately and completely for use by
 - `SKILL.md`: main skill file with all commands, examples, metadata tables, and troubleshooting.
 - `README.md`: repo overview, installation, scope, and quick usage.
 - `Makefile`: targets `dictionary-photos`, `check`, `compile`, `test` (test-dictionary + test-smoke).
-- `scripts/album/list.applescript`, `create.applescript`, `delete.applescript`.
-- `scripts/folder/list.applescript`.
-- `scripts/media/list.applescript`, `search.applescript`, `get.applescript`, `export.applescript`, `import.applescript`, `favorite.applescript`, `duplicate.applescript`.
-- `scripts/slideshow/start.applescript`, `stop.applescript`.
-- `scripts/application/favorites-album.applescript`, `recently-deleted.applescript`.
+- `scripts/applescripts/album/list.applescript`, `create.applescript`, `delete.applescript`.
+- `scripts/applescripts/folder/list.applescript`.
+- `scripts/applescripts/media/list.applescript`, `search.applescript`, `get.applescript`, `export.applescript`, `import.applescript`, `favorite.applescript`, `duplicate.applescript`.
+- `scripts/applescripts/slideshow/start.applescript`, `stop.applescript`.
+- `scripts/applescripts/application/favorites-album.applescript`, `recently-deleted.applescript`.
 - `scripts/spotlight.applescript`.
 - `tests/dictionary_contract.sh`: contract test against Photos.app scripting dictionary.
 - `tests/smoke_photos.sh`: smoke test for script layer (skips when Photos.app not available).
