@@ -10,16 +10,38 @@ Document the Photos.app AppleScript surface accurately and completely for use by
 - `SKILL.md`: main skill file with all commands, examples, metadata tables, and troubleshooting.
 - `README.md`: repo overview, installation, scope, and quick usage.
 - `Makefile`: targets `dictionary-photos`, `check`, `compile`, `test` (test-dictionary + test-smoke).
-- `scripts/album/list.applescript`, `create.applescript`, `delete.applescript`.
-- `scripts/folder/list.applescript`.
-- `scripts/media/list.applescript`, `search.applescript`, `get.applescript`, `export.applescript`, `import.applescript`, `favorite.applescript`, `duplicate.applescript`.
-- `scripts/slideshow/start.applescript`, `stop.applescript`.
-- `scripts/application/favorites-album.applescript`, `recently-deleted.applescript`.
-- `scripts/spotlight.applescript`.
-- `tests/dictionary_contract.sh`: contract test against Photos.app scripting dictionary.
-- `tests/smoke_photos.sh`: smoke test for script layer (skips when Photos.app not available).
+- `scripts/applescripts/album/list.applescript`, `create.applescript`, `delete.applescript`.
+- `scripts/applescripts/folder/list.applescript`.
+- `scripts/applescripts/media/list.applescript`, `search.applescript`, `get.applescript`, `export.applescript`, `import.applescript`, `favorite.applescript`, `duplicate.applescript`.
+- `scripts/applescripts/slideshow/start.applescript`, `stop.applescript`.
+- `scripts/applescripts/application/favorites-album.applescript`, `recently-deleted.applescript`.
+- `scripts/applescripts/spotlight.applescript`.
+- `scripts/tests/dictionary_contract.sh`: contract test against Photos.app scripting dictionary.
+- `scripts/tests/smoke_photos.sh`: smoke test for script layer (skips when Photos.app not available).
 - `.github/workflows/ci-pr.yml`: PR validation, auto-merge, version bump, tag, and release flow.
 - `.github/workflows/ci-main.yml`: main-branch validation, patch tag, and release flow.
+
+## Public interface and internal backend
+
+- `scripts/commands/` is the only public command surface.
+- `scripts/applescripts/` is the internal backend. Do not call AppleScript files directly from skill instructions.
+
+## Source of Truth
+
+- `make dictionary-photos` / `make dictionary-standard` for the live Photos.app scripting dictionary.
+- Live checks with `osascript` against Photos.app.
+
+## Pitfalls / Environment Limits
+
+- Photos.app automation may need **Photos** or **Full Disk Access** permission (System Settings → Privacy & Security).
+- Import/export operations may require Full Disk Access for file system access.
+- Some write operations (duplicate, favorite, export) may be unreliable depending on Photos.app version.
+
+## Safety Rules
+
+- Treat photo library as real user data.
+- Write operations (album/create, album/delete, media/import, media/duplicate, media/favorite) must be explicit.
+- Use the `CodexTest_` prefix for any test data and clean up after tests.
 
 ## Validation
 
